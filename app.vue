@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-// const { $socket } = useNuxtApp();
 import UserNick from "./components/UserNick.vue";
 import io from "socket.io-client";
 import ChatLog from "./components/ChatLog.vue";
@@ -24,7 +23,7 @@ function addToChat(m) {
 }
 function send() {
   socket.emit("message", text.value);
-  addToChat(text.value); // optimistic UI
+  addToChat(text.value);
   text.value = "";
 }
 function connectToServer(nickname) {
