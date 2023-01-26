@@ -10,11 +10,5 @@ export default defineNuxtConfig({
       apiBase: "", // can be overridden by NUXT_PUBLIC_API_BASE environment variable
     },
   },
-  css: ["~/assets/css/tailwind.css"],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
+  css: ["~/assets/css/main.css"],
 });

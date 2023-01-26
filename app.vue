@@ -1,51 +1,51 @@
 <template>
   <div>
+    <Header />
     <UserNick @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
 
-    <input v-model="text" @keyup.enter="send" @focus="startTyping(nickname)" @blur="stopTyping(nickname)" class="border border-gray-100" v-if="connected"/>
+    <input v-model="text" @keyup.enter="send"  @focus="startTyping(nickname)" @blur="stopTyping(nickname)" class="border border-gray-100" v-if="connected"/>
     <button @click="send" v-if="connected">SEND</button>
 
-  <div>
+    <div>
     <ul>
       <li v-for="user in connectedUsers" :key="user">{{ user }}</li>
     </ul>
   </div>
+
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import UserNick from "./components/UserNick.vue";
+
 import io from "socket.io-client";
 import ChatLog from "./components/ChatLog.vue";
-
-let socket;
+import { ref, computed } from 'vue';
+import Header from "./components/Header.vue"
 
 const config = useRuntimeConfig();
 const chatLog = ref("");
 const text = ref("");
-const nickname = ref('');
+const nickname = ref(""); 
+
+let socket;
+
 const connected = ref(false);
 const typing = ref(false);
-const typingValue = ref("");
+const typingValue = ref("")
 const users = ref({});
 
-
-const connectedUsers = computed(() => {
-  return users.value ? Object.entries(users.value).filter(([user, status]) => status).map(([user]) => user) : []
-});
 
 function addToChat(m) {
   if (m.startsWith("http") || m.startsWith("www")) {
     m = `<a href="${m}" target="_blank">${m}</a>`;
-  } 
+  }
   chatLog.value += `<div>${m}</div>`;
 }
 
 function send() {
   socket.emit("message", text.value);
-  addToChat(text.value);
+  addToChat(text.value); // optimistic UI
   text.value = "";
 }
 
@@ -53,6 +53,12 @@ function startTyping(nickname) {
   typingValue.value = text.value
   typing.value = true;
   socket.emit("typing", nickname);
+}
+
+function stopTyping(nickname) {
+  typingValue.value = ""
+  typing.value = false;
+  // socket.emit("stop_typing", nickname);
 }
 
 function connectToServer(nickname) {
@@ -67,4 +73,8 @@ function connectToServer(nickname) {
     users.value = data;
   });
 }
+
+const connectedUsers = computed(() => {
+  return users.value ? Object.entries(users.value).filter(([user, status]) => status).map(([user]) => user) : []
+});
 </script>

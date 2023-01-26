@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand:wght@300&display=swap');
+
+:root, html, body {
+    background-color:#f5ebe0;
+    font-family: 'Quicksand', sans-serif;
+    color: #6b705c;
+}
+
+button, input, div {
+    font-family: 'Quicksand', sans-serif;
+}
+
+input {
+    background-color: #edede9;
+    border: 1px solid #6b705c;
+    box-shadow: none;
+}
+
+button {
+    box-shadow: none;
+    border: 1px solid #6b705c;
+    background-color: transparent;
+}
