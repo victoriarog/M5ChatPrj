@@ -1,5 +1,5 @@
 <template>
-    <h1>Welcome to ChitChat :)</h1>
+    <h1>ChitChat</h1>
 </template>
 
 <style scoped>

@@ -1,16 +1,22 @@
 <template>
   <div>
-    <Header />
-    <UserNick @submit="connectToServer" v-if="!connected"/>
+    <Header v-if="!connected"/>
+    <Header2 v-if="connected"/>
+  <div class="box">
+    <UserNick class="nickForm" @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
+  </div>
 
-    <input v-model="text" @keyup.enter="send"  @focus="startTyping(nickname)" @blur="stopTyping(nickname)" class="border border-gray-100" v-if="connected"/>
-    <button @click="send" v-if="connected">SEND</button>
-
-    <div>
+    <div class="onlineP" v-if="connected">
+      <h3>Peeps online: </h3>
     <ul>
       <li v-for="user in connectedUsers" :key="user">{{ user }}</li>
     </ul>
+  </div>
+
+  <div class="box">
+    <input v-model="text" @keyup.enter="send"  @focus="startTyping(nickname)" v-if="connected"/>
+    <button @click="send" v-if="connected">SEND</button>
   </div>
 
   </div>
@@ -21,7 +27,8 @@
 import io from "socket.io-client";
 import ChatLog from "./components/ChatLog.vue";
 import { ref, computed } from 'vue';
-import Header from "./components/Header.vue"
+import Header from "./components/Header.vue";
+import Header2 from "./components/Header2.vue";
 
 const config = useRuntimeConfig();
 const chatLog = ref("");
@@ -53,12 +60,6 @@ function startTyping(nickname) {
   typingValue.value = text.value
   typing.value = true;
   socket.emit("typing", nickname);
-}
-
-function stopTyping(nickname) {
-  typingValue.value = ""
-  typing.value = false;
-  // socket.emit("stop_typing", nickname);
 }
 
 function connectToServer(nickname) {

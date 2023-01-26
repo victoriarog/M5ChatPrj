@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="nickForm">
       <input v-model="nickname" @keyup.enter="submitNickname" placeholder="Enter your nickname" />
       <button @click="submitNickname">Join Chat</button>
     </div>
@@ -14,7 +14,6 @@
     },
     methods: {
       submitNickname() {
-        // emit an event with the nickname
         this.$emit('submit', this.nickname)
       }
     }
