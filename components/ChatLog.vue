@@ -2,10 +2,11 @@
   <div
     ref="chatBox"
     v-html="chatLog"
-    class="m-4 p-2 overflow-scroll border border-black-100 max-h-20 h-20 min-h-20 max-w-20"
+    class="chatB"
   ></div>
 </template>
 
+<!-- m-4 p-2 overflow-scroll border border-black-100 max-h-20 h-20 min-h-20 max-w-20 -->
 
 <script setup>
 import { toRefs } from "vue";
@@ -25,5 +26,6 @@ watch(chatLog, () => {
 </script>
 
 <style scoped>
-  
+.chatB {
+}
 </style>
