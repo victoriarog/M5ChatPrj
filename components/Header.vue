@@ -1,10 +1,10 @@
 <template>
-    <h1>Welcome to ChitChat :)</h1>
+    <h1 class="hero glitch layers" data-text="ChitChat"><span>ChitChat</span></h1>
 </template>
 
 <style scoped>
     h1 {
         padding-left: 5%;
-        font-size: 40px;
+        font-size: 46px;
     }
 </style>

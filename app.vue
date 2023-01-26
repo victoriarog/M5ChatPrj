@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Header v-if="!connected"/>
-    <Header2 v-if="connected"/>
+    <Header/>
   <div class="box">
     <UserNick @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
@@ -28,7 +27,6 @@ import io from "socket.io-client";
 import ChatLog from "./components/ChatLog.vue";
 import { ref, computed } from 'vue';
 import Header from "./components/Header.vue";
-import Header2 from "./components/Header2.vue";
 
 const config = useRuntimeConfig();
 const chatLog = ref("");
