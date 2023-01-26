@@ -3,7 +3,7 @@
     <Header v-if="!connected"/>
     <Header2 v-if="connected"/>
   <div class="box">
-    <UserNick class="nickForm" @submit="connectToServer" v-if="!connected"/>
+    <UserNick @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
   </div>
 
@@ -16,7 +16,7 @@
 
   <div class="box">
     <input v-model="text" @keyup.enter="send"  @focus="startTyping(nickname)" v-if="connected"/>
-    <button @click="send" v-if="connected">SEND</button>
+    <button @click="send" v-if="connected">Send</button>
   </div>
 
   </div>

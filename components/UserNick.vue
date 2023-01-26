@@ -1,7 +1,8 @@
 <template>
-    <div class="nickForm">
+    <div class="inputNick">
+      <h3>Choose a nickname:</h3><br/>
       <input v-model="nickname" @keyup.enter="submitNickname" placeholder="Enter your nickname" />
-      <button @click="submitNickname">Join Chat</button>
+      <button @click="submitNickname">Join</button>
     </div>
   </template>
   
