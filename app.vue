@@ -1,6 +1,13 @@
 <template>
   <div>
     <Header/>
+    <img class="pigeon" src="./assets/pigeon.gif" v-if="!connected"/>
+    <div class="pigeon1b" v-if="!connected">
+      <img  class="pigeon1" src="./assets/pigeon.gif"/>
+    </div>
+    <div class="pigeon2b" v-if="!connected">
+      <img  class="pigeon2" src="./assets/pigeon.gif"/>
+    </div>
   <div class="box">
     <UserNick @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
