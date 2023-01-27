@@ -12,10 +12,7 @@
     <UserNick @submit="connectToServer" v-if="!connected"/>
     <ChatLog :chat-log="chatLog" v-if="connected" />
   </div>
-<!--   
-  <embed height="0" width="0"
-  src="http://youtube.googleapis.com/v/oorXCykcDCE&autoplay=1&loop=1" /> -->
-
+  
   <iframe width="0" height="0" src="https://www.youtube.com/embed/oorXCykcDCE?rel=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loop="true"></iframe>
 
     <div class="onlineP" v-if="connected">
